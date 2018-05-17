@@ -44,9 +44,15 @@ const fetchLyrics = async songId => {
   return [snap.val()];
 }
 
+const deleteLyric = async songId => {
+  const snap = await lyricRef.orderByChild('songId').equalTo(songId).once('value')
+  snap.ref.remove();
+}
+
 module.exports = {
   addLyric,
   addLike,
   fetchLyrics,
-  fetchLyric
+  fetchLyric,
+  deleteLyric
 }

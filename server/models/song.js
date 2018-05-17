@@ -2,7 +2,7 @@ const firebase = require('../config/firebaseSetup');
 const db = firebase.database();
 const songRef = db.ref('song');
 const {promisify} = require('../util/promise');
-const {fetchLyric} = require('./lyric');
+const {fetchLyric,deleteLyric} = require('./lyric');
 
 const addSong = async (title) => {
   const id = songRef.push().key;
@@ -21,6 +21,7 @@ const addSong = async (title) => {
 
 const deleteSong = async id => {
   const snap = await songRef.orderByChild('id').equalTo(id).once("child_added");
+  await deleteLyric(snap.val().id);
   await promisify(() => snap.ref.remove());
   return {
     id

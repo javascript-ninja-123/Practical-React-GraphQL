@@ -1,0 +1,12 @@
+
+
+
+.collection-item{
+  display:flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.material-icons{
+  cursor: pointer;
+}
