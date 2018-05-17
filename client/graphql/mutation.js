@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 export const mutationSong = gql`
     mutation AddSong($title: String){
       addSong(title:$title) {
+        id
         title
       }
     }
@@ -26,4 +27,14 @@ export const mutationAddLyric = gql`
       id
     }
   }
+`
+
+
+export const mutationAddLikes = gql`
+mutation AddLikes($id:ID!){
+likeLyric(id:$id){
+  likes
+  id
+}
+}
 `

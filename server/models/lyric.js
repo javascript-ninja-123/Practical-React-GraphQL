@@ -27,7 +27,8 @@ const addLike = async (id) => {
   const newLikes = parseInt(snap.val().likes) + 1;
   await promisify(() => snap.ref.update({likes:newLikes}))
   return {
-    likes:newLikes
+    likes:newLikes,
+    id:snap.val().id
   }
 }
 

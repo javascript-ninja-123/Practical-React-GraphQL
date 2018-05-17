@@ -5,6 +5,7 @@ import {  Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory'
 import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import {ApolloProvider} from 'react-apollo';
 import './style/style.css';
 
@@ -12,9 +13,12 @@ import './style/style.css';
 import SongList from './components/SongList'
 import SongCreate from './components/SongCreate';
 import SongDetail from './components/SongDetail';
-
+const cache = new InMemoryCache({
+  dataIdFromObject: object => object.id
+});
 const client = new ApolloClient({
-  link:new HttpLink({ uri:"http://localhost:4000/graphql"})
+  link:new HttpLink({ uri:"http://localhost:4000/graphql"}),
+  cache
 })
 
 
